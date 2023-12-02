@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <router-link class="btn btn-dark my-3" :to="{ name: 'postEdit', params: {id: post.id} }">Edit Post</router-link>
+    <router-link class="btn btn-dark my-3" :to="{ name: 'postEdit', params: { id: post.id } }">Edit Post</router-link>
+    <button class="btn btn-danger" @click="deletePost">Delete Post</button>
     <!-- <h1>User</h1> -->
     <div class="row g-3">
       <div v-if="loading" class="spinner-border text-secondary" role="status">
@@ -42,7 +43,17 @@ export default {
         });
     }
     getPost();
-    return { post, loading }
+
+    function deletePost() {
+      axios.delete(`https://jsonplaceholder.typicode.com/posts/${route.params.id}`)
+        .then(function () {
+          alert('Post Deleted Successfully!');
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+    return { post, loading, deletePost }
   },
 }
 </script>
