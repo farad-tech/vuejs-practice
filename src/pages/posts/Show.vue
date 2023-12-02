@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <router-link class="btn btn-dark my-3" :to="{ name: 'postEdit', params: {id: post.id} }">Edit Post</router-link>
     <!-- <h1>User</h1> -->
     <div class="row g-3">
       <div v-if="loading" class="spinner-border text-secondary" role="status">
